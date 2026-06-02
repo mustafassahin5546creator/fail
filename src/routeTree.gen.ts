@@ -9,8 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TictactoeRouteImport } from './routes/tictactoe'
+import { Route as SnakeRouteImport } from './routes/snake'
+import { Route as MemoryRouteImport } from './routes/memory'
+import { Route as GuessRouteImport } from './routes/guess'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TictactoeRoute = TictactoeRouteImport.update({
+  id: '/tictactoe',
+  path: '/tictactoe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SnakeRoute = SnakeRouteImport.update({
+  id: '/snake',
+  path: '/snake',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MemoryRoute = MemoryRouteImport.update({
+  id: '/memory',
+  path: '/memory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuessRoute = GuessRouteImport.update({
+  id: '/guess',
+  path: '/guess',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +43,72 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/guess': typeof GuessRoute
+  '/memory': typeof MemoryRoute
+  '/snake': typeof SnakeRoute
+  '/tictactoe': typeof TictactoeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/guess': typeof GuessRoute
+  '/memory': typeof MemoryRoute
+  '/snake': typeof SnakeRoute
+  '/tictactoe': typeof TictactoeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/guess': typeof GuessRoute
+  '/memory': typeof MemoryRoute
+  '/snake': typeof SnakeRoute
+  '/tictactoe': typeof TictactoeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/guess' | '/memory' | '/snake' | '/tictactoe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/guess' | '/memory' | '/snake' | '/tictactoe'
+  id: '__root__' | '/' | '/guess' | '/memory' | '/snake' | '/tictactoe'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GuessRoute: typeof GuessRoute
+  MemoryRoute: typeof MemoryRoute
+  SnakeRoute: typeof SnakeRoute
+  TictactoeRoute: typeof TictactoeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tictactoe': {
+      id: '/tictactoe'
+      path: '/tictactoe'
+      fullPath: '/tictactoe'
+      preLoaderRoute: typeof TictactoeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/snake': {
+      id: '/snake'
+      path: '/snake'
+      fullPath: '/snake'
+      preLoaderRoute: typeof SnakeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/memory': {
+      id: '/memory'
+      path: '/memory'
+      fullPath: '/memory'
+      preLoaderRoute: typeof MemoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guess': {
+      id: '/guess'
+      path: '/guess'
+      fullPath: '/guess'
+      preLoaderRoute: typeof GuessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +121,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GuessRoute: GuessRoute,
+  MemoryRoute: MemoryRoute,
+  SnakeRoute: SnakeRoute,
+  TictactoeRoute: TictactoeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
