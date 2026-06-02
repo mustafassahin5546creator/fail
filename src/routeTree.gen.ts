@@ -9,12 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as Twenty48RouteImport } from './routes/twenty48'
 import { Route as TictactoeRouteImport } from './routes/tictactoe'
 import { Route as SnakeRouteImport } from './routes/snake'
+import { Route as RpsRouteImport } from './routes/rps'
+import { Route as ReactionRouteImport } from './routes/reaction'
 import { Route as MemoryRouteImport } from './routes/memory'
+import { Route as HangmanRouteImport } from './routes/hangman'
 import { Route as GuessRouteImport } from './routes/guess'
 import { Route as IndexRouteImport } from './routes/index'
 
+const Twenty48Route = Twenty48RouteImport.update({
+  id: '/twenty48',
+  path: '/twenty48',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TictactoeRoute = TictactoeRouteImport.update({
   id: '/tictactoe',
   path: '/tictactoe',
@@ -25,9 +34,24 @@ const SnakeRoute = SnakeRouteImport.update({
   path: '/snake',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RpsRoute = RpsRouteImport.update({
+  id: '/rps',
+  path: '/rps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReactionRoute = ReactionRouteImport.update({
+  id: '/reaction',
+  path: '/reaction',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MemoryRoute = MemoryRouteImport.update({
   id: '/memory',
   path: '/memory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HangmanRoute = HangmanRouteImport.update({
+  id: '/hangman',
+  path: '/hangman',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuessRoute = GuessRouteImport.update({
@@ -44,43 +68,94 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/guess': typeof GuessRoute
+  '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
+  '/reaction': typeof ReactionRoute
+  '/rps': typeof RpsRoute
   '/snake': typeof SnakeRoute
   '/tictactoe': typeof TictactoeRoute
+  '/twenty48': typeof Twenty48Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/guess': typeof GuessRoute
+  '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
+  '/reaction': typeof ReactionRoute
+  '/rps': typeof RpsRoute
   '/snake': typeof SnakeRoute
   '/tictactoe': typeof TictactoeRoute
+  '/twenty48': typeof Twenty48Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/guess': typeof GuessRoute
+  '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
+  '/reaction': typeof ReactionRoute
+  '/rps': typeof RpsRoute
   '/snake': typeof SnakeRoute
   '/tictactoe': typeof TictactoeRoute
+  '/twenty48': typeof Twenty48Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/guess' | '/memory' | '/snake' | '/tictactoe'
+  fullPaths:
+    | '/'
+    | '/guess'
+    | '/hangman'
+    | '/memory'
+    | '/reaction'
+    | '/rps'
+    | '/snake'
+    | '/tictactoe'
+    | '/twenty48'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/guess' | '/memory' | '/snake' | '/tictactoe'
-  id: '__root__' | '/' | '/guess' | '/memory' | '/snake' | '/tictactoe'
+  to:
+    | '/'
+    | '/guess'
+    | '/hangman'
+    | '/memory'
+    | '/reaction'
+    | '/rps'
+    | '/snake'
+    | '/tictactoe'
+    | '/twenty48'
+  id:
+    | '__root__'
+    | '/'
+    | '/guess'
+    | '/hangman'
+    | '/memory'
+    | '/reaction'
+    | '/rps'
+    | '/snake'
+    | '/tictactoe'
+    | '/twenty48'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GuessRoute: typeof GuessRoute
+  HangmanRoute: typeof HangmanRoute
   MemoryRoute: typeof MemoryRoute
+  ReactionRoute: typeof ReactionRoute
+  RpsRoute: typeof RpsRoute
   SnakeRoute: typeof SnakeRoute
   TictactoeRoute: typeof TictactoeRoute
+  Twenty48Route: typeof Twenty48Route
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/twenty48': {
+      id: '/twenty48'
+      path: '/twenty48'
+      fullPath: '/twenty48'
+      preLoaderRoute: typeof Twenty48RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tictactoe': {
       id: '/tictactoe'
       path: '/tictactoe'
@@ -95,11 +170,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SnakeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/rps': {
+      id: '/rps'
+      path: '/rps'
+      fullPath: '/rps'
+      preLoaderRoute: typeof RpsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reaction': {
+      id: '/reaction'
+      path: '/reaction'
+      fullPath: '/reaction'
+      preLoaderRoute: typeof ReactionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/memory': {
       id: '/memory'
       path: '/memory'
       fullPath: '/memory'
       preLoaderRoute: typeof MemoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hangman': {
+      id: '/hangman'
+      path: '/hangman'
+      fullPath: '/hangman'
+      preLoaderRoute: typeof HangmanRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/guess': {
@@ -122,9 +218,13 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GuessRoute: GuessRoute,
+  HangmanRoute: HangmanRoute,
   MemoryRoute: MemoryRoute,
+  ReactionRoute: ReactionRoute,
+  RpsRoute: RpsRoute,
   SnakeRoute: SnakeRoute,
   TictactoeRoute: TictactoeRoute,
+  Twenty48Route: Twenty48Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -17,6 +17,10 @@ const games = [
   { to: "/snake", title: "Yılan", desc: "Klavyeyle kontrol et, büyümeye devam et.", emoji: "🐍", accent: "shadow-magenta" },
   { to: "/memory", title: "Hafıza", desc: "Aynı kartları eşle, hızlı bitir.", emoji: "🧠", accent: "shadow-glow" },
   { to: "/guess", title: "Sayı Tahmin", desc: "1–100 arası gizli sayıyı bul.", emoji: "🎯", accent: "shadow-magenta" },
+  { to: "/rps", title: "Taş Kağıt Makas", desc: "Bilgisayara karşı 5 raunt.", emoji: "✊", accent: "shadow-glow" },
+  { to: "/reaction", title: "Reaksiyon", desc: "Yeşili gör, hızla tıkla.", emoji: "⚡", accent: "shadow-magenta" },
+  { to: "/hangman", title: "Adam Asmaca", desc: "Harfleri tahmin et, kelimeyi kurtar.", emoji: "🔤", accent: "shadow-glow" },
+  { to: "/twenty48", title: "2048", desc: "Sayıları birleştir, 2048'e ulaş.", emoji: "🔢", accent: "shadow-magenta" },
 ] as const;
 
 function Index() {
@@ -51,7 +55,7 @@ function Index() {
         </section>
 
         <footer className="mt-24 text-center text-xs text-muted-foreground font-mono">
-          built with ♥ — qwertz v2
+          © qwertz v2 — built with ♥
         </footer>
       </div>
     </div>
