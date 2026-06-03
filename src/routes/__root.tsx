@@ -83,6 +83,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Tarayıcıda oynanan ücretsiz mini oyunlar." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "QwertzV2 — Mini Oyun Arcade" },
+      { name: "twitter:description", content: "Tarayıcıda oynanan ücretsiz mini oyunlar." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/52da20ab-3b64-449a-8c29-9c9f94e72a9a" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/52da20ab-3b64-449a-8c29-9c9f94e72a9a" },
     ],
     links: [
       {
