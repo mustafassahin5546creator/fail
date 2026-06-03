@@ -106,10 +106,17 @@ function Page() {
       paddleXRef.current = (t - 0.5) * 8;
     };
     const mm = (e: MouseEvent) => move(e.clientX);
-    const tm = (e: TouchEvent) => e.touches[0] && move(e.touches[0].clientX);
+    const tm = (e: TouchEvent) => {
+      if (e.touches[0]) {
+        e.preventDefault();
+        move(e.touches[0].clientX);
+      }
+    };
+    const ts = (e: TouchEvent) => e.touches[0] && move(e.touches[0].clientX);
     const el = boxRef.current;
     el?.addEventListener("mousemove", mm);
-    el?.addEventListener("touchmove", tm);
+    el?.addEventListener("touchstart", ts, { passive: true });
+    el?.addEventListener("touchmove", tm, { passive: false });
     return () => {
       el?.removeEventListener("mousemove", mm);
       el?.removeEventListener("touchmove", tm);
