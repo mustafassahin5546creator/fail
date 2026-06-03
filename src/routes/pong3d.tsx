@@ -130,7 +130,7 @@ function Page() {
 
         <div
           ref={boxRef}
-          className="mt-4 aspect-video w-full cursor-none overflow-hidden rounded-2xl border border-border bg-card"
+          className="mt-4 aspect-video w-full cursor-none overflow-hidden rounded-2xl border border-border bg-card touch-none select-none"
         >
           {mounted && (
             <Canvas camera={{ position: [0, 6, 7], fov: 55 }}>
