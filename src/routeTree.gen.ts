@@ -12,11 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as Twenty48RouteImport } from './routes/twenty48'
 import { Route as TictactoeRouteImport } from './routes/tictactoe'
 import { Route as SnakeRouteImport } from './routes/snake'
+import { Route as Shooter3dRouteImport } from './routes/shooter3d'
 import { Route as RpsRouteImport } from './routes/rps'
 import { Route as ReactionRouteImport } from './routes/reaction'
+import { Route as Pong3dRouteImport } from './routes/pong3d'
 import { Route as MemoryRouteImport } from './routes/memory'
 import { Route as HangmanRouteImport } from './routes/hangman'
 import { Route as GuessRouteImport } from './routes/guess'
+import { Route as CubeRunnerRouteImport } from './routes/cube-runner'
 import { Route as IndexRouteImport } from './routes/index'
 
 const Twenty48Route = Twenty48RouteImport.update({
@@ -34,6 +37,11 @@ const SnakeRoute = SnakeRouteImport.update({
   path: '/snake',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Shooter3dRoute = Shooter3dRouteImport.update({
+  id: '/shooter3d',
+  path: '/shooter3d',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RpsRoute = RpsRouteImport.update({
   id: '/rps',
   path: '/rps',
@@ -42,6 +50,11 @@ const RpsRoute = RpsRouteImport.update({
 const ReactionRoute = ReactionRouteImport.update({
   id: '/reaction',
   path: '/reaction',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Pong3dRoute = Pong3dRouteImport.update({
+  id: '/pong3d',
+  path: '/pong3d',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MemoryRoute = MemoryRouteImport.update({
@@ -59,6 +72,11 @@ const GuessRoute = GuessRouteImport.update({
   path: '/guess',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CubeRunnerRoute = CubeRunnerRouteImport.update({
+  id: '/cube-runner',
+  path: '/cube-runner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -67,22 +85,28 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cube-runner': typeof CubeRunnerRoute
   '/guess': typeof GuessRoute
   '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
+  '/pong3d': typeof Pong3dRoute
   '/reaction': typeof ReactionRoute
   '/rps': typeof RpsRoute
+  '/shooter3d': typeof Shooter3dRoute
   '/snake': typeof SnakeRoute
   '/tictactoe': typeof TictactoeRoute
   '/twenty48': typeof Twenty48Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cube-runner': typeof CubeRunnerRoute
   '/guess': typeof GuessRoute
   '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
+  '/pong3d': typeof Pong3dRoute
   '/reaction': typeof ReactionRoute
   '/rps': typeof RpsRoute
+  '/shooter3d': typeof Shooter3dRoute
   '/snake': typeof SnakeRoute
   '/tictactoe': typeof TictactoeRoute
   '/twenty48': typeof Twenty48Route
@@ -90,11 +114,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cube-runner': typeof CubeRunnerRoute
   '/guess': typeof GuessRoute
   '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
+  '/pong3d': typeof Pong3dRoute
   '/reaction': typeof ReactionRoute
   '/rps': typeof RpsRoute
+  '/shooter3d': typeof Shooter3dRoute
   '/snake': typeof SnakeRoute
   '/tictactoe': typeof TictactoeRoute
   '/twenty48': typeof Twenty48Route
@@ -103,33 +130,42 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/cube-runner'
     | '/guess'
     | '/hangman'
     | '/memory'
+    | '/pong3d'
     | '/reaction'
     | '/rps'
+    | '/shooter3d'
     | '/snake'
     | '/tictactoe'
     | '/twenty48'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/cube-runner'
     | '/guess'
     | '/hangman'
     | '/memory'
+    | '/pong3d'
     | '/reaction'
     | '/rps'
+    | '/shooter3d'
     | '/snake'
     | '/tictactoe'
     | '/twenty48'
   id:
     | '__root__'
     | '/'
+    | '/cube-runner'
     | '/guess'
     | '/hangman'
     | '/memory'
+    | '/pong3d'
     | '/reaction'
     | '/rps'
+    | '/shooter3d'
     | '/snake'
     | '/tictactoe'
     | '/twenty48'
@@ -137,11 +173,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CubeRunnerRoute: typeof CubeRunnerRoute
   GuessRoute: typeof GuessRoute
   HangmanRoute: typeof HangmanRoute
   MemoryRoute: typeof MemoryRoute
+  Pong3dRoute: typeof Pong3dRoute
   ReactionRoute: typeof ReactionRoute
   RpsRoute: typeof RpsRoute
+  Shooter3dRoute: typeof Shooter3dRoute
   SnakeRoute: typeof SnakeRoute
   TictactoeRoute: typeof TictactoeRoute
   Twenty48Route: typeof Twenty48Route
@@ -170,6 +209,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SnakeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shooter3d': {
+      id: '/shooter3d'
+      path: '/shooter3d'
+      fullPath: '/shooter3d'
+      preLoaderRoute: typeof Shooter3dRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rps': {
       id: '/rps'
       path: '/rps'
@@ -182,6 +228,13 @@ declare module '@tanstack/react-router' {
       path: '/reaction'
       fullPath: '/reaction'
       preLoaderRoute: typeof ReactionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pong3d': {
+      id: '/pong3d'
+      path: '/pong3d'
+      fullPath: '/pong3d'
+      preLoaderRoute: typeof Pong3dRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/memory': {
@@ -205,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cube-runner': {
+      id: '/cube-runner'
+      path: '/cube-runner'
+      fullPath: '/cube-runner'
+      preLoaderRoute: typeof CubeRunnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -217,11 +277,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CubeRunnerRoute: CubeRunnerRoute,
   GuessRoute: GuessRoute,
   HangmanRoute: HangmanRoute,
   MemoryRoute: MemoryRoute,
+  Pong3dRoute: Pong3dRoute,
   ReactionRoute: ReactionRoute,
   RpsRoute: RpsRoute,
+  Shooter3dRoute: Shooter3dRoute,
   SnakeRoute: SnakeRoute,
   TictactoeRoute: TictactoeRoute,
   Twenty48Route: Twenty48Route,
@@ -229,13 +292,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
