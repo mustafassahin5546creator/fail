@@ -129,7 +129,7 @@ function Page() {
       <div className="mx-auto max-w-4xl">
         <Link to="/" className="font-mono text-xs text-primary">← geri</Link>
         <h1 className="mt-4 text-4xl font-bold gradient-text">3D Pong</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Fareni alanda gezdir, mavi paleti kontrol et.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Fareni veya parmağını alanda gezdir, mavi paleti kontrol et.</p>
 
         <div className="mt-6 flex items-center gap-6 font-mono text-2xl">
           <span className="text-cyan-400">Sen: {score.p}</span>
