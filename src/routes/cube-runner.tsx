@@ -125,7 +125,7 @@ function Page() {
       <div className="mx-auto max-w-4xl">
         <Link to="/" className="font-mono text-xs text-primary">← geri</Link>
         <h1 className="mt-4 text-4xl font-bold gradient-text">Küp Koşusu 3D</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Sol / Sağ ok tuşları ile yön değiştir.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Ok tuşları, ekrana dokunma veya alttaki düğmelerle yön değiştir.</p>
 
         <div className="mt-6 flex items-center justify-between">
           <div className="font-mono text-2xl text-foreground">Skor: {score}</div>
