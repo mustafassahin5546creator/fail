@@ -136,7 +136,15 @@ function Page() {
           )}
         </div>
 
-        <div className="mt-4 aspect-video w-full overflow-hidden rounded-2xl border border-border bg-card">
+        <div
+          className="relative mt-4 aspect-video w-full overflow-hidden rounded-2xl border border-border bg-card touch-none select-none"
+          onPointerDown={(e) => {
+            const r = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+            const t = (e.clientX - r.left) / r.width;
+            if (t < 0.5) xRef.current = Math.max(-3, xRef.current - 1.5);
+            else xRef.current = Math.min(3, xRef.current + 1.5);
+          }}
+        >
           {mounted && (
             <Canvas shadows camera={{ position: [0, 4, 8], fov: 60 }}>
               <ambientLight intensity={0.4} />
@@ -156,6 +164,21 @@ function Page() {
               />
             </Canvas>
           )}
+        </div>
+
+        <div className="mt-4 grid grid-cols-2 gap-3 md:hidden">
+          <button
+            onPointerDown={() => (xRef.current = Math.max(-3, xRef.current - 1.5))}
+            className="rounded-lg border border-border bg-card py-4 text-2xl font-mono"
+          >
+            ←
+          </button>
+          <button
+            onPointerDown={() => (xRef.current = Math.min(3, xRef.current + 1.5))}
+            className="rounded-lg border border-border bg-card py-4 text-2xl font-mono"
+          >
+            →
+          </button>
         </div>
       </div>
     </div>
