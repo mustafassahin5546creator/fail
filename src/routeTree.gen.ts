@@ -17,6 +17,7 @@ import { Route as ReactionRouteImport } from './routes/reaction'
 import { Route as MemoryRouteImport } from './routes/memory'
 import { Route as HangmanRouteImport } from './routes/hangman'
 import { Route as GuessRouteImport } from './routes/guess'
+import { Route as CubeRunnerRouteImport } from './routes/cube-runner'
 import { Route as IndexRouteImport } from './routes/index'
 
 const Twenty48Route = Twenty48RouteImport.update({
@@ -59,6 +60,11 @@ const GuessRoute = GuessRouteImport.update({
   path: '/guess',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CubeRunnerRoute = CubeRunnerRouteImport.update({
+  id: '/cube-runner',
+  path: '/cube-runner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -67,6 +73,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cube-runner': typeof CubeRunnerRoute
   '/guess': typeof GuessRoute
   '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cube-runner': typeof CubeRunnerRoute
   '/guess': typeof GuessRoute
   '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
@@ -90,6 +98,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cube-runner': typeof CubeRunnerRoute
   '/guess': typeof GuessRoute
   '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
@@ -103,6 +112,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/cube-runner'
     | '/guess'
     | '/hangman'
     | '/memory'
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/cube-runner'
     | '/guess'
     | '/hangman'
     | '/memory'
@@ -125,6 +136,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/cube-runner'
     | '/guess'
     | '/hangman'
     | '/memory'
@@ -137,6 +149,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CubeRunnerRoute: typeof CubeRunnerRoute
   GuessRoute: typeof GuessRoute
   HangmanRoute: typeof HangmanRoute
   MemoryRoute: typeof MemoryRoute
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cube-runner': {
+      id: '/cube-runner'
+      path: '/cube-runner'
+      fullPath: '/cube-runner'
+      preLoaderRoute: typeof CubeRunnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -217,6 +237,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CubeRunnerRoute: CubeRunnerRoute,
   GuessRoute: GuessRoute,
   HangmanRoute: HangmanRoute,
   MemoryRoute: MemoryRoute,
