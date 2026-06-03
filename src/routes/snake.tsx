@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { GameShell } from "@/components/GameShell";
+import { useSwipe } from "@/hooks/useSwipe";
 
 export const Route = createFileRoute("/snake")({
   head: () => ({
@@ -32,10 +33,21 @@ function SnakeGame() {
   const [dead, setDead] = useState(false);
   const dirRef = useRef(dir);
   dirRef.current = dir;
+  const boardRef = useRef<HTMLDivElement>(null);
+
+  const turn = useCallback((nd: Dir) => {
+    const d = dirRef.current;
+    if (nd === "U" && d !== "D") setDir("U");
+    else if (nd === "D" && d !== "U") setDir("D");
+    else if (nd === "L" && d !== "R") setDir("L");
+    else if (nd === "R" && d !== "L") setDir("R");
+  }, []);
 
   const reset = useCallback(() => {
     setSnake(INITIAL); setDir("R"); setFood(randFood(INITIAL)); setDead(false);
   }, []);
+
+  useSwipe(boardRef, turn);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -79,7 +91,8 @@ function SnakeGame() {
         Skor: {snake.length - 1} {dead && "— ÖLDÜN!"}
       </p>
       <div
-        className="grid bg-card border border-border rounded-xl p-2 mx-auto"
+        ref={boardRef}
+        className="grid bg-card border border-border rounded-xl p-2 mx-auto touch-none select-none"
         style={{ gridTemplateColumns: `repeat(${SIZE}, 1fr)`, width: "min(90vw, 500px)", aspectRatio: "1" }}
       >
         {Array.from({ length: SIZE * SIZE }).map((_, i) => {
@@ -95,7 +108,15 @@ function SnakeGame() {
           );
         })}
       </div>
-      <p className="mt-4 text-xs text-muted-foreground">Ok tuşlarıyla oyna</p>
+      <p className="mt-4 text-xs text-muted-foreground">Ok tuşlarıyla veya tahtada kaydırarak oyna</p>
+      <div className="mt-4 grid grid-cols-3 gap-2 max-w-[180px] mx-auto md:hidden">
+        <div />
+        <button onClick={() => turn("U")} className="rounded-md border border-border bg-card p-3 text-lg">↑</button>
+        <div />
+        <button onClick={() => turn("L")} className="rounded-md border border-border bg-card p-3 text-lg">←</button>
+        <button onClick={() => turn("D")} className="rounded-md border border-border bg-card p-3 text-lg">↓</button>
+        <button onClick={() => turn("R")} className="rounded-md border border-border bg-card p-3 text-lg">→</button>
+      </div>
       {dead && (
         <button onClick={reset} className="mt-4 rounded-lg bg-primary px-6 py-2 font-medium text-primary-foreground hover:opacity-90">
           Yeniden Başla

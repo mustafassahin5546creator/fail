@@ -125,7 +125,7 @@ function Page() {
       <div className="mx-auto max-w-4xl">
         <Link to="/" className="font-mono text-xs text-primary">← geri</Link>
         <h1 className="mt-4 text-4xl font-bold gradient-text">Küp Koşusu 3D</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Sol / Sağ ok tuşları ile yön değiştir.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Ok tuşları, ekrana dokunma veya alttaki düğmelerle yön değiştir.</p>
 
         <div className="mt-6 flex items-center justify-between">
           <div className="font-mono text-2xl text-foreground">Skor: {score}</div>
@@ -136,7 +136,15 @@ function Page() {
           )}
         </div>
 
-        <div className="mt-4 aspect-video w-full overflow-hidden rounded-2xl border border-border bg-card">
+        <div
+          className="relative mt-4 aspect-video w-full overflow-hidden rounded-2xl border border-border bg-card touch-none select-none"
+          onPointerDown={(e) => {
+            const r = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+            const t = (e.clientX - r.left) / r.width;
+            if (t < 0.5) xRef.current = Math.max(-3, xRef.current - 1.5);
+            else xRef.current = Math.min(3, xRef.current + 1.5);
+          }}
+        >
           {mounted && (
             <Canvas shadows camera={{ position: [0, 4, 8], fov: 60 }}>
               <ambientLight intensity={0.4} />
@@ -156,6 +164,21 @@ function Page() {
               />
             </Canvas>
           )}
+        </div>
+
+        <div className="mt-4 grid grid-cols-2 gap-3 md:hidden">
+          <button
+            onPointerDown={() => (xRef.current = Math.max(-3, xRef.current - 1.5))}
+            className="rounded-lg border border-border bg-card py-4 text-2xl font-mono"
+          >
+            ←
+          </button>
+          <button
+            onPointerDown={() => (xRef.current = Math.min(3, xRef.current + 1.5))}
+            className="rounded-lg border border-border bg-card py-4 text-2xl font-mono"
+          >
+            →
+          </button>
         </div>
       </div>
     </div>

@@ -106,12 +106,20 @@ function Page() {
       paddleXRef.current = (t - 0.5) * 8;
     };
     const mm = (e: MouseEvent) => move(e.clientX);
-    const tm = (e: TouchEvent) => e.touches[0] && move(e.touches[0].clientX);
+    const tm = (e: TouchEvent) => {
+      if (e.touches[0]) {
+        e.preventDefault();
+        move(e.touches[0].clientX);
+      }
+    };
+    const ts = (e: TouchEvent) => e.touches[0] && move(e.touches[0].clientX);
     const el = boxRef.current;
     el?.addEventListener("mousemove", mm);
-    el?.addEventListener("touchmove", tm);
+    el?.addEventListener("touchstart", ts, { passive: true });
+    el?.addEventListener("touchmove", tm, { passive: false });
     return () => {
       el?.removeEventListener("mousemove", mm);
+      el?.removeEventListener("touchstart", ts);
       el?.removeEventListener("touchmove", tm);
     };
   }, [mounted]);
@@ -121,7 +129,7 @@ function Page() {
       <div className="mx-auto max-w-4xl">
         <Link to="/" className="font-mono text-xs text-primary">← geri</Link>
         <h1 className="mt-4 text-4xl font-bold gradient-text">3D Pong</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Fareni alanda gezdir, mavi paleti kontrol et.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Fareni veya parmağını alanda gezdir, mavi paleti kontrol et.</p>
 
         <div className="mt-6 flex items-center gap-6 font-mono text-2xl">
           <span className="text-cyan-400">Sen: {score.p}</span>
@@ -130,7 +138,7 @@ function Page() {
 
         <div
           ref={boxRef}
-          className="mt-4 aspect-video w-full cursor-none overflow-hidden rounded-2xl border border-border bg-card"
+          className="mt-4 aspect-video w-full cursor-none overflow-hidden rounded-2xl border border-border bg-card touch-none select-none"
         >
           {mounted && (
             <Canvas camera={{ position: [0, 6, 7], fov: 55 }}>
