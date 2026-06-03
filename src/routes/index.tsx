@@ -21,6 +21,9 @@ const games = [
   { to: "/reaction", title: "Reaksiyon", desc: "Yeşili gör, hızla tıkla.", emoji: "⚡", accent: "shadow-magenta" },
   { to: "/hangman", title: "Adam Asmaca", desc: "Harfleri tahmin et, kelimeyi kurtar.", emoji: "🔤", accent: "shadow-glow" },
   { to: "/twenty48", title: "2048", desc: "Sayıları birleştir, 2048'e ulaş.", emoji: "🔢", accent: "shadow-magenta" },
+  { to: "/cube-runner", title: "Küp Koşusu 3D", desc: "Engellerden kaç, hızlan.", emoji: "🧊", accent: "shadow-glow" },
+  { to: "/shooter3d", title: "Atış Talimi 3D", desc: "Halkaları tıkla, puan topla.", emoji: "🎯", accent: "shadow-magenta" },
+  { to: "/pong3d", title: "3D Pong", desc: "Klasiğin 3D versiyonu.", emoji: "🏓", accent: "shadow-glow" },
 ] as const;
 
 function Index() {
