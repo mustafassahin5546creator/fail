@@ -119,6 +119,7 @@ function Page() {
     el?.addEventListener("touchmove", tm, { passive: false });
     return () => {
       el?.removeEventListener("mousemove", mm);
+      el?.removeEventListener("touchstart", ts);
       el?.removeEventListener("touchmove", tm);
     };
   }, [mounted]);
