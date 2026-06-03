@@ -33,10 +33,21 @@ function SnakeGame() {
   const [dead, setDead] = useState(false);
   const dirRef = useRef(dir);
   dirRef.current = dir;
+  const boardRef = useRef<HTMLDivElement>(null);
+
+  const turn = useCallback((nd: Dir) => {
+    const d = dirRef.current;
+    if (nd === "U" && d !== "D") setDir("U");
+    else if (nd === "D" && d !== "U") setDir("D");
+    else if (nd === "L" && d !== "R") setDir("L");
+    else if (nd === "R" && d !== "L") setDir("R");
+  }, []);
 
   const reset = useCallback(() => {
     setSnake(INITIAL); setDir("R"); setFood(randFood(INITIAL)); setDead(false);
   }, []);
+
+  useSwipe(boardRef, turn);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
