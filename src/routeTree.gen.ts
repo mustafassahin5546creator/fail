@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as Twenty48RouteImport } from './routes/twenty48'
 import { Route as TictactoeRouteImport } from './routes/tictactoe'
 import { Route as SnakeRouteImport } from './routes/snake'
+import { Route as Shooter3dRouteImport } from './routes/shooter3d'
 import { Route as RpsRouteImport } from './routes/rps'
 import { Route as ReactionRouteImport } from './routes/reaction'
 import { Route as MemoryRouteImport } from './routes/memory'
@@ -33,6 +34,11 @@ const TictactoeRoute = TictactoeRouteImport.update({
 const SnakeRoute = SnakeRouteImport.update({
   id: '/snake',
   path: '/snake',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Shooter3dRoute = Shooter3dRouteImport.update({
+  id: '/shooter3d',
+  path: '/shooter3d',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RpsRoute = RpsRouteImport.update({
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/memory': typeof MemoryRoute
   '/reaction': typeof ReactionRoute
   '/rps': typeof RpsRoute
+  '/shooter3d': typeof Shooter3dRoute
   '/snake': typeof SnakeRoute
   '/tictactoe': typeof TictactoeRoute
   '/twenty48': typeof Twenty48Route
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/memory': typeof MemoryRoute
   '/reaction': typeof ReactionRoute
   '/rps': typeof RpsRoute
+  '/shooter3d': typeof Shooter3dRoute
   '/snake': typeof SnakeRoute
   '/tictactoe': typeof TictactoeRoute
   '/twenty48': typeof Twenty48Route
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/memory': typeof MemoryRoute
   '/reaction': typeof ReactionRoute
   '/rps': typeof RpsRoute
+  '/shooter3d': typeof Shooter3dRoute
   '/snake': typeof SnakeRoute
   '/tictactoe': typeof TictactoeRoute
   '/twenty48': typeof Twenty48Route
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/memory'
     | '/reaction'
     | '/rps'
+    | '/shooter3d'
     | '/snake'
     | '/tictactoe'
     | '/twenty48'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/memory'
     | '/reaction'
     | '/rps'
+    | '/shooter3d'
     | '/snake'
     | '/tictactoe'
     | '/twenty48'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/memory'
     | '/reaction'
     | '/rps'
+    | '/shooter3d'
     | '/snake'
     | '/tictactoe'
     | '/twenty48'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   MemoryRoute: typeof MemoryRoute
   ReactionRoute: typeof ReactionRoute
   RpsRoute: typeof RpsRoute
+  Shooter3dRoute: typeof Shooter3dRoute
   SnakeRoute: typeof SnakeRoute
   TictactoeRoute: typeof TictactoeRoute
   Twenty48Route: typeof Twenty48Route
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/snake'
       fullPath: '/snake'
       preLoaderRoute: typeof SnakeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shooter3d': {
+      id: '/shooter3d'
+      path: '/shooter3d'
+      fullPath: '/shooter3d'
+      preLoaderRoute: typeof Shooter3dRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/rps': {
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   MemoryRoute: MemoryRoute,
   ReactionRoute: ReactionRoute,
   RpsRoute: RpsRoute,
+  Shooter3dRoute: Shooter3dRoute,
   SnakeRoute: SnakeRoute,
   TictactoeRoute: TictactoeRoute,
   Twenty48Route: Twenty48Route,
