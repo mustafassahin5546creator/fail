@@ -91,10 +91,6 @@ function SnakeGame() {
         Skor: {snake.length - 1} {dead && "— ÖLDÜN!"}
       </p>
       <div
-        className="grid bg-card border border-border rounded-xl p-2 mx-auto"
-        style={{ gridTemplateColumns: `repeat(${SIZE}, 1fr)`, width: "min(90vw, 500px)", aspectRatio: "1" }}
-      >
-      <div
         ref={boardRef}
         className="grid bg-card border border-border rounded-xl p-2 mx-auto touch-none select-none"
         style={{ gridTemplateColumns: `repeat(${SIZE}, 1fr)`, width: "min(90vw, 500px)", aspectRatio: "1" }}
