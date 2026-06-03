@@ -15,6 +15,7 @@ import { Route as SnakeRouteImport } from './routes/snake'
 import { Route as Shooter3dRouteImport } from './routes/shooter3d'
 import { Route as RpsRouteImport } from './routes/rps'
 import { Route as ReactionRouteImport } from './routes/reaction'
+import { Route as Pong3dRouteImport } from './routes/pong3d'
 import { Route as MemoryRouteImport } from './routes/memory'
 import { Route as HangmanRouteImport } from './routes/hangman'
 import { Route as GuessRouteImport } from './routes/guess'
@@ -51,6 +52,11 @@ const ReactionRoute = ReactionRouteImport.update({
   path: '/reaction',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Pong3dRoute = Pong3dRouteImport.update({
+  id: '/pong3d',
+  path: '/pong3d',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MemoryRoute = MemoryRouteImport.update({
   id: '/memory',
   path: '/memory',
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/guess': typeof GuessRoute
   '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
+  '/pong3d': typeof Pong3dRoute
   '/reaction': typeof ReactionRoute
   '/rps': typeof RpsRoute
   '/shooter3d': typeof Shooter3dRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/guess': typeof GuessRoute
   '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
+  '/pong3d': typeof Pong3dRoute
   '/reaction': typeof ReactionRoute
   '/rps': typeof RpsRoute
   '/shooter3d': typeof Shooter3dRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/guess': typeof GuessRoute
   '/hangman': typeof HangmanRoute
   '/memory': typeof MemoryRoute
+  '/pong3d': typeof Pong3dRoute
   '/reaction': typeof ReactionRoute
   '/rps': typeof RpsRoute
   '/shooter3d': typeof Shooter3dRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/guess'
     | '/hangman'
     | '/memory'
+    | '/pong3d'
     | '/reaction'
     | '/rps'
     | '/shooter3d'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/guess'
     | '/hangman'
     | '/memory'
+    | '/pong3d'
     | '/reaction'
     | '/rps'
     | '/shooter3d'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/guess'
     | '/hangman'
     | '/memory'
+    | '/pong3d'
     | '/reaction'
     | '/rps'
     | '/shooter3d'
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   GuessRoute: typeof GuessRoute
   HangmanRoute: typeof HangmanRoute
   MemoryRoute: typeof MemoryRoute
+  Pong3dRoute: typeof Pong3dRoute
   ReactionRoute: typeof ReactionRoute
   RpsRoute: typeof RpsRoute
   Shooter3dRoute: typeof Shooter3dRoute
@@ -217,6 +230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReactionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pong3d': {
+      id: '/pong3d'
+      path: '/pong3d'
+      fullPath: '/pong3d'
+      preLoaderRoute: typeof Pong3dRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/memory': {
       id: '/memory'
       path: '/memory'
@@ -261,6 +281,7 @@ const rootRouteChildren: RootRouteChildren = {
   GuessRoute: GuessRoute,
   HangmanRoute: HangmanRoute,
   MemoryRoute: MemoryRoute,
+  Pong3dRoute: Pong3dRoute,
   ReactionRoute: ReactionRoute,
   RpsRoute: RpsRoute,
   Shooter3dRoute: Shooter3dRoute,
