@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { GameShell } from "@/components/GameShell";
+import { useSwipe } from "@/hooks/useSwipe";
 
 export const Route = createFileRoute("/snake")({
   head: () => ({
